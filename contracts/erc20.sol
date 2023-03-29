@@ -132,31 +132,3 @@ contract ERC20Token {
         return true;
     }
 }
-
-/**
- * @title MithrilToken
- * @dev MithrilToken
- */
-contract MithrilToken is Owned, ERC20Token {
-
-    // Address where funds are collected.
-    address public vault;
-    address public wallet;
-
-    function MithrilToken() public {
-    }
-
-    function init(uint256 _supply, address _vault, address _wallet) public onlyOwner {
-        require(vault == 0x0);
-        require(_vault != 0x0);
-
-        totalSupply = _supply;
-        vault = _vault;
-        wallet = _wallet;
-        balanceOf[vault] = totalSupply;
-    }
-
-    function () payable public {
-        wallet.transfer(msg.value);
-    }
-}

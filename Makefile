@@ -46,7 +46,6 @@ test: coverage.txt FORCE
 contracts: FORCE
 	$(shell solc contracts/erc20.sol --bin --abi --optimize --overwrite --output-dir contracts)
 	$(shell abigen --type ERC20Token --abi contracts/ERC20Token.abi -bin contracts/ERC20Token.bin -out contracts/erc20_token.go --pkg contracts)
-	$(shell abigen --type MithrilToken --abi contracts/MithrilToken.abi -bin contracts/MithrilToken.bin -out contracts/mithril_token.go --pkg contracts)
 
 eth-indexer-docker:
 	@docker build -f ./cmd/Dockerfile -t $(DOCKER_IMAGE):$(DOCKER_IMAGE_TAG) .
